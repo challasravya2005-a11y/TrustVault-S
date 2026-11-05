@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TrustVault Dashboard</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div><strong>TrustVault</strong> <span id="user-info" class="muted"></span></div>
+    <button id="logout" class="secondary">Log out</button>
+  </header>
+
+  <main class="container">
+    <div id="message" class="message"></div>
+
+    <section id="upload-section" class="panel hidden">
+      <h2>Upload document</h2>
+      <form id="upload-form">
+        <div class="grid">
+          <input id="doc-name" placeholder="Document name" required>
+          <input id="doc-category" placeholder="Category" value="General">
+        </div>
+        <input id="doc-file" type="file" accept=".pdf,.jpg,.jpeg,.png,.txt" required>
+        <button type="submit">Upload</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Documents</h2>
+      <div class="filters">
+        <input id="filter-name" placeholder="Search name">
+        <input id="filter-owner" placeholder="Search owner">
+        <input id="filter-category" placeholder="Category">
+        <input id="filter-from" type="date">
+        <input id="filter-to" type="date">
+        <button id="search" class="secondary">Search</button>
+      </div>
+      <div id="documents"></div>
+    </section>
+
+    <section id="admin-users" class="panel hidden">
+      <h2>User management</h2>
+      <div id="users"></div>
+    </section>
+
+    <section id="audit-section" class="panel hidden">
+      <h2>Audit logs</h2>
+      <div class="filters">
+        <select id="audit-action">
+          <option value="">All actions</option>
+          <option>LOGIN</option><option>LOGOUT</option><option>UPLOAD</option>
+          <option>VIEW</option><option>DOWNLOAD</option><option>EDIT</option>
+          <option>DELETE</option><option>SHARE</option><option>REVOKE</option>
+        </select>
+        <select id="audit-success">
+          <option value="">All results</option>
+          <option value="true">Success</option>
+          <option value="false">Failure</option>
+        </select>
+        <button id="audit-search" class="secondary">Filter</button>
+      </div>
+      <div id="audit"></div>
+    </section>
+  </main>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

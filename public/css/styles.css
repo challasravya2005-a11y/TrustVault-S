@@ -1,0 +1,90 @@
+:root {
+  --bg: #f4f6fb;
+  --panel: #ffffff;
+  --text: #172033;
+  --muted: #64748b;
+  --primary: #2563eb;
+  --danger: #dc2626;
+  --border: #dbe2ef;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+
+.auth-card {
+  max-width: 420px;
+  margin: 8vh auto;
+  background: var(--panel);
+  padding: 32px;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, .08);
+}
+
+h1, h2 { margin-top: 0; }
+.muted { color: var(--muted); }
+
+form { display: grid; gap: 12px; }
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+button {
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--primary);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+button.secondary { background: #475569; }
+button.danger { background: var(--danger); }
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  background: var(--panel);
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+.filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 14px; }
+
+table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+th, td { padding: 10px; border-bottom: 1px solid var(--border); text-align: left; font-size: 14px; }
+th { background: #f8fafc; }
+
+.message { padding: 10px 12px; border-radius: 6px; margin: 12px 0; display: none; }
+.message.success { display: block; background: #dcfce7; color: #166534; }
+.message.error { display: block; background: #fee2e2; color: #991b1b; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.hidden { display: none !important; }
+
+@media (max-width: 640px) {
+  .container, .topbar { padding: 14px; }
+  table { display: block; overflow-x: auto; }
+}
