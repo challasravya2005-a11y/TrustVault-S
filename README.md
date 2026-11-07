@@ -63,28 +63,19 @@ Open `http://localhost:3000`.
 | Viewer | viewer@trustvault.test | Viewer@12345 |
 
 Change these credentials before any public deployment.
+## API overview
 
-## API endpoints
+The backend exposes REST API endpoints for authentication, documents, sharing, permissions, admin management, and audit logs.
 
-| Method | Endpoint | Access | Purpose |
-|---|---|---|---|
-| POST | `/api/auth/login` | Public | Log in |
-| POST | `/api/auth/logout` | Authenticated | Log out |
-| GET | `/api/auth/me` | Authenticated | Current session user |
-| GET | `/api/documents` | Authenticated | Search/list authorized documents |
-| POST | `/api/documents` | Authenticated | Upload PDF/JPG/PNG/TXT up to 5 MB |
-| GET | `/api/documents/:id` | Read+ | View metadata |
-| GET | `/api/documents/:id/download` | Read+ | Download through the server |
-| PATCH | `/api/documents/:id` | Edit+/Owner/Admin | Rename, recategorize, or replace file |
-| DELETE | `/api/documents/:id` | Owner/Admin | Delete document |
-| GET | `/api/documents/:id/access` | Owner/Admin | List permissions |
-| POST | `/api/documents/:id/access` | Owner/Admin | Grant `read` or `edit` |
-| DELETE | `/api/documents/:id/access/:userId` | Owner/Admin | Revoke access |
-| GET | `/api/admin/users` | Admin | List users |
-| PATCH | `/api/admin/users/:id` | Admin | Change user role |
-| GET | `/api/admin/documents` | Admin | List all documents |
-| DELETE | `/api/admin/documents/:id` | Admin | Delete any document |
-| GET | `/api/audit` | Admin | Filter audit logs |
+Main endpoint groups:
+
+- `/api/auth` — login, logout, current session
+- `/api/documents` — upload, list, view, download, edit, delete
+- `/api/documents/:id/access` — grant and revoke read/edit permissions
+- `/api/admin` — manage users, documents, and view audit logs
+- `/api/audit` — view audit logs (Admin only)
+
+All document operations enforce server-side authorization. Audit logs record successful and denied actions.
 
 ## Tests
 
@@ -96,16 +87,24 @@ Tests cover login success/failure, admin authorization, owner access, shared vie
 
 The tests use an in-memory mock of the Supabase data layer, so they run without real Supabase credentials.
 
-## StackBlitz
+## Development and deployment
 
-1. Import or upload this project to StackBlitz.
-2. Create `.env` using `.env.example`.
-3. Run `npm install`.
-4. Run `npm run seed` once.
-5. Run `npm start`.
-6. Open the preview URL and log in with a demo account.
+This project was developed locally using Visual Studio Code (VS Code).
 
-StackBlitz is suitable for local/demo use. For a durable deployment, use Render for the backend and Supabase for the database/storage.
+### Run locally
+
+1. Open the project folder in VS Code.
+2. Create `.env` from `.env.example`.
+3. Add your Supabase URL, service-role key, storage bucket name, and session secret.
+4. Run:
+
+```bash
+npm install
+npm run seed
+npm start
+```
+
+5. Open the URL shown in the terminal, usually `http://localhost:3000`.
 
 ## Render deployment
 
@@ -113,9 +112,13 @@ StackBlitz is suitable for local/demo use. For a durable deployment, use Render 
 2. In Render, create a **Web Service** from the repository.
 3. Set build command: `npm install`
 4. Set start command: `npm start`
-5. Add environment variables: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SESSION_SECRET`, `SUPABASE_STORAGE_BUCKET=documents`, and `NODE_ENV=production`.
+5. Add environment variables:
+- `NODE_ENV=production`
+   - `SESSION_SECRET`
+   - `SUPABASE_URL`
+   - `SUPABASE_SERVICE_ROLE_KEY`
+   - `SUPABASE_STORAGE_BUCKET=documents`
 6. Deploy, then run the seed script locally against the same Supabase project or use a Render one-time job.
-
 ## Security notes
 
 - Every document operation rechecks the session user, role, ownership, and current permission on the server.
