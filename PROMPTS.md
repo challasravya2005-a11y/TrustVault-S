@@ -1,4 +1,5 @@
 ## Entry 1: Project Setup & Repository Configuration
+<<<<<<< HEAD
 - AI Tool Used: Gemini
 
 Prompt: Asked for project roadmap, tech stack selection, and repository visibility rules according to challenge guidelines.
@@ -14,6 +15,23 @@ Notes / Decisions: Kept the repository private during active development to prot
 - AI Tool Used: Perplexity
 - Prompt: Asked how to enforce document ownership and shared permissions (Read/Edit) with immediate revocation in a multi-role application.
 - Notes / Decisions: Implemented server-side permission checks for every document operation. Owners can manage their own documents, admins have override access, and viewers can only access documents shared with them. Revocation deletes the access record so it takes effect immediately.
+=======
+- AI Tool Used:Gemini
+
+-Prompt: Asked for project roadmap, tech stack selection, and repository visibility rules according to challenge guidelines.
+
+-Notes / Decisions: Kept the repository private during active development to protect work per hackathon instructions, and plan to switch it to public right before the final deadline.
+
+## Entry 2: Authentication and Session Handling
+- **AI Tool Used:** Perplexity
+- **Prompt:** Asked how to implement secure login, logout, password hashing, and session handling in a Node.js/Express application.
+- **Notes / Decisions:** Implemented bcrypt password hashing, HTTP-only session cookies, and server-side session validation. Ensured that user identity and role are reloaded from the database on every authenticated request rather than trusting browser-supplied values.
+
+## Entry 3: Role-Based Access Control
+- **AI Tool Used:** Perplexity
+- **Prompt:** Asked how to enforce document ownership and shared permissions (Read/Edit) with immediate revocation in a multi-role application.
+- **Notes / Decisions:** Implemented server-side permission checks for every document operation. Owners can manage their own documents, admins have override access, and viewers can only access documents shared with them. Revocation deletes the access record so it takes effect immediately.
+>>>>>>> e8a9992 (Update TrustVault dashboard and backend)
 
 ## Entry 4: Audit Logging
 - **AI Tool Used:** Perplexity

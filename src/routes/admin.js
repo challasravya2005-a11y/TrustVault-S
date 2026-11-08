@@ -42,10 +42,15 @@ router.get('/documents', async (req, res, next) => {
 
 router.delete('/documents/:id', loadDocument, async (req, res, next) => {
   try {
-    await db.deleteFile(req.document.storage_path).catch(() => {});
-    await db.deleteDocument(req.document.id);
-    await record(req.user, 'DELETE', req.document.id, true, { reason: 'Administrator deletion' });
-    res.json({ message: 'Document deleted successfully' });
+   await db.deleteFile(req.document.storage_path).catch(() => {});
+await db.deleteDocument(req.document.id);
+
+await record(req.user, 'DELETE', null, true, {
+  deleted_document_id: req.document.id,
+  document_name: req.document.name
+});
+
+res.json({ message: 'Document deleted successfully' });
   } catch (error) {
     next(error);
   }

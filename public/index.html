@@ -1,24 +1,144 @@
+
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TrustVault Login</title>
+  <title>TrustVault | Secure Login</title>
   <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body>
-  <main class="auth-card">
-    <h1>TrustVault</h1>
-    <p class="muted">Secure document sharing platform</p>
-    <div id="message" class="message"></div>
-    <form id="login-form">
-      <label for="email">Email</label>
-      <input id="email" name="email" type="email" required autocomplete="username">
-      <label for="password">Password</label>
-      <input id="password" name="password" type="password" required autocomplete="current-password">
-      <button type="submit">Log in</button>
-    </form>
+
+<body class="login-page">
+
+  <main class="login-shell">
+
+    <!-- LEFT: BRAND AND SECURITY VISUAL -->
+    <section class="login-visual">
+
+      <div class="visual-brand">
+        <div class="mini-shield">✦</div>
+        <span>TrustVault</span>
+      </div>
+
+      <div class="visual-content">
+        <span class="eyebrow">PRIVATE. SECURE. TRUSTED.</span>
+
+        <h1>Your Documents.<br>
+          Your <span>Control.</span>
+        </h1>
+
+        <p>
+          A smarter and safer way to store,
+          manage and share your important documents.
+        </p>
+
+        <div class="vault-art" aria-hidden="true">
+          <div class="glow-orb"></div>
+
+          <div class="vault-base"></div>
+
+          <div class="document-stack">
+            <div class="document doc-one"></div>
+            <div class="document doc-two"></div>
+            <div class="document doc-three"></div>
+            <div class="document doc-four"></div>
+            <div class="document doc-five"></div>
+          </div>
+
+          <div class="floating-file file-left">
+            <span>PDF</span>
+          </div>
+
+          <div class="floating-file file-right">
+            <span>✓</span>
+          </div>
+
+          <div class="vault-lock">♢</div>
+        </div>
+      </div>
+
+      <div class="visual-footer">
+        <span>◈ Secure Document Sharing</span>
+        <span>TrustVault © 2026</span>
+      </div>
+
+    </section>
+
+
+    <!-- RIGHT: LOGIN FORM -->
+    <section class="login-form-panel">
+
+      <div class="login-heading">
+        <span class="login-small-title">WELCOME BACK</span>
+        <h2>LOGIN</h2>
+        <p>Access your secure document workspace.</p>
+      </div>
+
+      <div class="login-security">
+        <span class="security-dot"></span>
+        Your secure workspace is ready
+      </div>
+
+      <div id="message" class="message" role="status"></div>
+
+      <form id="login-form">
+
+        <label for="email">Email Address</label>
+
+        <div class="input-wrapper">
+          <span class="input-icon">✉</span>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Enter your email"
+            required
+            autocomplete="username"
+          >
+        </div>
+
+        <label for="password">Password</label>
+
+        <div class="input-wrapper">
+          <span class="input-icon">♙</span>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Enter your password"
+            required
+            autocomplete="current-password"
+          >
+        </div>
+
+        <button type="submit" class="login-submit">
+          LOGIN <span>→</span>
+        </button>
+
+      </form>
+
+      <div class="login-divider">
+        <span>SECURE ACCESS</span>
+      </div>
+
+      <div class="login-bottom">
+        <div class="bottom-shield">✓</div>
+        <p>
+          Your documents are protected.
+          <br>
+          Only authorized users can access them.
+        </p>
+      </div>
+
+      <p class="login-caption">
+        TrustVault – Secure Document Sharing Platform
+      </p>
+
+    </section>
+
   </main>
+
   <script src="/js/login.js"></script>
+
 </body>
 </html>

@@ -163,9 +163,14 @@ router.delete('/:id', requireAuth, loadDocument, async (req, res, next) => {
       throw new HttpError(403, 'Only the owner or an administrator can delete this document');
     }
     await db.deleteFile(req.document.storage_path).catch(() => {});
-    await db.deleteDocument(req.document.id);
-    await record(req.user, 'DELETE', req.document.id, true, {});
-    res.json({ message: 'Document deleted successfully' });
+await db.deleteDocument(req.document.id);
+
+await record(req.user, 'DELETE', null, true, {
+  deleted_document_id: req.document.id,
+  document_name: req.document.name
+});
+
+res.json({ message: 'Document deleted successfully' });
   } catch (error) {
     next(error);
   }

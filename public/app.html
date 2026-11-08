@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,64 +7,259 @@
   <title>TrustVault Dashboard</title>
   <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body>
-  <header class="topbar">
-    <div><strong>TrustVault</strong> <span id="user-info" class="muted"></span></div>
-    <button id="logout" class="secondary">Log out</button>
-  </header>
 
-  <main class="container">
-    <div id="message" class="message"></div>
+<body class="dashboard-page">
 
-    <section id="upload-section" class="panel hidden">
-      <h2>Upload document</h2>
-      <form id="upload-form">
-        <div class="grid">
-          <input id="doc-name" placeholder="Document name" required>
-          <input id="doc-category" placeholder="Category" value="General">
+  <div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">T</div>
+        <div>
+          <h2>TrustVault</h2>
+          <small>Secure Document Sharing</small>
         </div>
-        <input id="doc-file" type="file" accept=".pdf,.jpg,.jpeg,.png,.txt" required>
-        <button type="submit">Upload</button>
-      </form>
-    </section>
-
-    <section class="panel">
-      <h2>Documents</h2>
-      <div class="filters">
-        <input id="filter-name" placeholder="Search name">
-        <input id="filter-owner" placeholder="Search owner">
-        <input id="filter-category" placeholder="Category">
-        <input id="filter-from" type="date">
-        <input id="filter-to" type="date">
-        <button id="search" class="secondary">Search</button>
       </div>
-      <div id="documents"></div>
-    </section>
 
-    <section id="admin-users" class="panel hidden">
-      <h2>User management</h2>
-      <div id="users"></div>
-    </section>
+      <p class="nav-heading">WORKSPACE</p>
 
-    <section id="audit-section" class="panel hidden">
-      <h2>Audit logs</h2>
-      <div class="filters">
-        <select id="audit-action">
-          <option value="">All actions</option>
-          <option>LOGIN</option><option>LOGOUT</option><option>UPLOAD</option>
-          <option>VIEW</option><option>DOWNLOAD</option><option>EDIT</option>
-          <option>DELETE</option><option>SHARE</option><option>REVOKE</option>
-        </select>
-        <select id="audit-success">
-          <option value="">All results</option>
-          <option value="true">Success</option>
-          <option value="false">Failure</option>
-        </select>
-        <button id="audit-search" class="secondary">Filter</button>
+      <nav class="sidebar-nav">
+  <a href="#dashboard-home" class="nav-link active">
+    <span>▦</span> Dashboard
+  </a>
+
+  <a href="#upload-section" class="nav-link" id="nav-upload">
+    <span>↑</span> Upload Document
+  </a>
+
+  <a href="#documents-panel" class="nav-link">
+    <span>▤</span> Documents
+  </a>
+
+  <a href="#admin-users" class="nav-link" id="nav-users">
+    <span>♙</span> User Management
+  </a>
+
+  <a href="#audit-section" class="nav-link" id="nav-audit">
+    <span>◷</span> Audit Logs
+  </a>
+</nav>
+
+      <div class="sidebar-footer">
+        <div class="security-icon">✓</div>
+        <strong>Your files are protected</strong>
+        <small>Secure access. Trusted sharing.</small>
       </div>
-      <div id="audit"></div>
-    </section>
-  </main>
+    </aside>
+
+    <!-- Main content -->
+    <div class="dashboard-main">
+
+      <header class="dashboard-topbar">
+        <div>
+          <h2>Dashboard</h2>
+          <p>Manage your documents securely</p>
+        </div>
+
+        <div class="topbar-user">
+          <div class="user-avatar">U</div>
+          <span id="user-info" class="muted"></span>
+          <button id="logout" class="logout-btn" title="Sign out of your account">
+            Log out
+          </button>
+        </div>
+      </header>
+
+      <main class="dashboard-content" id="dashboard-home">
+
+        <!-- Welcome banner -->
+        <div class="welcome-section">
+          <div>
+            <span class="welcome-label">TRUSTVAULT WORKSPACE</span>
+            <h1>Welcome to TrustVault</h1>
+            <p>Your secure space to manage and share documents.</p>
+          </div>
+          <div class="welcome-symbol">🔐</div>
+        </div>
+
+        <div id="message" class="message"></div>
+
+        <!-- Upload document -->
+        <section id="upload-section" class="panel hidden">
+          <div class="section-heading">
+            <div>
+              <span class="section-label">DOCUMENT CENTER</span>
+              <h2>Upload Document</h2>
+              <p>Add a document to your secure workspace.</p>
+            </div>
+            <div class="section-icon purple-icon">↑</div>
+          </div>
+
+          <form id="upload-form">
+            <div class="grid">
+              <input
+                id="doc-name"
+                placeholder="Enter document name"
+                title="Enter a name for your document"
+                required
+              >
+
+              <input
+                id="doc-category"
+                placeholder="Enter document category"
+                title="Enter a category, for example General or Reports"
+                value="General"
+              >
+            </div>
+
+            <input
+              id="doc-file"
+              type="file"
+              accept=".pdf,.jpg,.jpeg,.png,.txt"
+              title="Choose a PDF, JPG, PNG or TXT file"
+              required
+            >
+
+            <small class="muted">
+              Supported formats: PDF, JPG, JPEG, PNG and TXT.
+              Maximum file size: 5 MB.
+            </small>
+
+            <button type="submit" title="Upload the selected document securely">
+              ↑ Upload Document
+            </button>
+          </form>
+        </section>
+
+        <!-- Documents -->
+        <section id="documents-panel" class="panel">
+          <div class="section-heading">
+            <div>
+              <span class="section-label">YOUR FILES</span>
+              <h2>Documents</h2>
+              <p>Search and manage documents you have permission to access.</p>
+            </div>
+            <div class="section-icon blue-icon">▤</div>
+          </div>
+
+          <div class="filters">
+
+            <input
+              id="filter-name"
+              placeholder="Search by document name"
+              title="Enter the document name"
+            >
+
+            <input
+              id="filter-owner"
+              placeholder="Search by owner"
+              title="Enter the document owner's name or email"
+            >
+
+            <input
+              id="filter-category"
+              placeholder="Filter by category"
+              title="Enter a document category"
+            >
+
+            <input
+              id="filter-from"
+              type="date"
+              title="Select upload date from"
+            >
+
+            <input
+              id="filter-to"
+              type="date"
+              title="Select upload date to"
+            >
+
+            <button
+              id="search"
+              class="secondary"
+              title="Find documents matching your search criteria"
+            >
+              🔍 Search Documents
+            </button>
+
+          </div>
+
+          <div id="documents"></div>
+        </section>
+
+        <!-- User management -->
+        <section id="admin-users" class="panel hidden">
+          <div class="section-heading">
+            <div>
+              <span class="section-label">ACCESS CONTROL</span>
+              <h2>User Management</h2>
+              <p>View users and manage their roles and permissions.</p>
+            </div>
+            <div class="section-icon green-icon">♙</div>
+          </div>
+
+          <div id="users"></div>
+        </section>
+
+        <!-- Audit logs -->
+        <section id="audit-section" class="panel hidden">
+          <div class="section-heading">
+            <div>
+              <span class="section-label">SECURITY ACTIVITY</span>
+              <h2>Audit Logs</h2>
+              <p>Monitor login, upload, download, sharing and other activities.</p>
+            </div>
+            <div class="section-icon orange-icon">◷</div>
+          </div>
+
+          <div class="filters">
+
+            <select
+              id="audit-action"
+              title="Choose an activity type to filter"
+            >
+              <option value="">All actions</option>
+              <option>LOGIN</option>
+              <option>LOGOUT</option>
+              <option>UPLOAD</option>
+              <option>VIEW</option>
+              <option>DOWNLOAD</option>
+              <option>EDIT</option>
+              <option>DELETE</option>
+              <option>SHARE</option>
+              <option>REVOKE</option>
+            </select>
+
+            <select
+              id="audit-success"
+              title="Choose whether to show successful or failed activities"
+            >
+              <option value="">All results</option>
+              <option value="true">Success</option>
+              <option value="false">Failure</option>
+            </select>
+
+            <button
+              id="audit-search"
+              class="secondary"
+              title="Apply the selected activity and result filters"
+            >
+              ⚙ Filter Audit Logs
+            </button>
+
+          </div>
+
+          <div id="audit"></div>
+        </section>
+
+        <footer class="dashboard-footer">
+          TrustVault · Secure Document Sharing Platform
+        </footer>
+
+      </main>
+    </div>
+  </div>
 
   <script src="/js/app.js"></script>
 </body>

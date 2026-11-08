@@ -46,6 +46,10 @@ The service-role key is used only by the Node.js backend. It must never be place
 
 ```bash
 npm install
+# Windows Command Prompt / PowerShell
+copy .env.example .env
+
+# macOS / Linux
 cp .env.example .env
 # Edit .env with your Supabase URL, service-role key, and session secret
 npm run seed
@@ -68,6 +72,7 @@ Change these credentials before any public deployment.
 The backend exposes REST API endpoints for authentication, documents, sharing, permissions, admin management, and audit logs.
 
 Main endpoint groups:
+<<<<<<< HEAD
 
 - `/api/auth` — login, logout, current session
 - `/api/documents` — upload, list, view, download, edit, delete
@@ -86,13 +91,14 @@ npm test
 Tests cover login success/failure, admin authorization, owner access, shared viewer access, unauthorized access, read-versus-edit permissions, revocation, upload validation, and audit logging of refused attempts.
 
 The tests use an in-memory mock of the Supabase data layer, so they run without real Supabase credentials.
+## Development and deployment
 
+<<<<<<< HEAD
 ## Development and deployment
 
 This project was developed locally using Visual Studio Code (VS Code).
 
 ### Run locally
-
 1. Open the project folder in VS Code.
 2. Create `.env` from `.env.example`.
 3. Add your Supabase URL, service-role key, storage bucket name, and session secret.
